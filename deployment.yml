@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: date-time-app
+  namespace: date-time-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: date-time-app
+  template:
+    metadata:
+      labels:
+        app: date-time-app
+    spec:
+      containers:
+      - name: date-time-app
+        image: ankus04/date-and-time-app
+        ports:
+        - containerPort: 8080

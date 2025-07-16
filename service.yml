@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: date-time-service
+  namespace: date-time-namespace
+spec:
+  selector:
+    app: date-time-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
