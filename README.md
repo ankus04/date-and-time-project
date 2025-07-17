@@ -114,7 +114,7 @@
 
    --Create a namespace
 
-          kubectl create ns date-time-app
+          kubectl create ns date-time-namespace
 
    --Write deploment.yml file
 
@@ -122,7 +122,7 @@
           kind: Deployment
           metadata:
             name: date-time-app
-            namespace: date-time-app
+            namespace: date-time-namespace
             spec:
               replicas: 2
               selector:
@@ -146,14 +146,23 @@
           kind: Service
           metadata:
             name: date-time-service
-            namespace: date-time-app
+            namespace: date-time-namespace
           spec:
             type: LoadBalancer
             selector:
-              app: datetime
+              app: date-time-app
             ports:
             - protocol: TCP
               port: 80
               targetPort: 8080
 
 
+   --Now apply deployment and service
+
+          kubectl apply -f namespace.yml deployment.yml service.yml
+
+
+
+   --Port forward 
+
+          sudo -E kubectl port-forward service/date-time-service -n date-time-namespace 8080:8080 --address=0.0.0.0
