@@ -14,7 +14,7 @@ spec:
         app: date-time-app
     spec:
       containers:
-      - name: date-time-app
+      - name: date-time-container
         image: ankus04/date-and-time-app
         ports:
         - containerPort: 8080
